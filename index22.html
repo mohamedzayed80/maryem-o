@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, Gorgeous Maryam! 💖</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .heart {
+            position: absolute;
+            color: rgba(255, 182, 193, 0.7);
+            font-size: 20px;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+        
+        .container {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 800px;
+        }
+        
+        .birthday-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            animation: cardEntry 1s ease-out;
+        }
+        
+        @keyframes cardEntry {
+            from { opacity: 0; transform: translateY(50px) scale(0.9); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        
+        .birthday-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+            100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+        }
+        
+        .name-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e, #ffa8a8, #ff6b6b);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease-in-out infinite;
+            margin-bottom: 10px;
+            text-shadow: 0 0 30px rgba(255, 107, 107, 0.5);
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .subtitle {
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 20px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+        
+        .message {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.8;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+        
+        .flirty-message {
+            font-style: italic;
+            color: #ffb3d9;
+            font-size: 1rem;
+            margin: 20px 0;
+            text-shadow: 0 0 10px rgba(255, 179, 217, 0.5);
+            position: relative;
+            min-height: 350px;
+        }
+        
+        .message-container {
+            position: relative;
+            width: 100%;
+            height: 350px;
+            overflow: hidden;
+            perspective: 1000px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .message-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.8s ease, opacity 0.8s ease;
+            backface-visibility: hidden;
+            overflow-y: auto;
+            text-align: left;
+        }
+        
+        .message-content::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .message-content::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+        }
+        
+        .message-content p {
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+        
+        .message-arabic {
+            transform: translateX(0);
+            opacity: 1;
+            z-index: 2;
+        }
+        
+        .message-english {
+            transform: translateX(100%);
+            opacity: 0;
+            z-index: 1;
+            text-align: center;
+        }
+        
+        .message-english.active {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        .message-arabic.hidden {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+        
+        .show-next-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            border: none;
+            padding: 14px 40px;
+            border-radius: 50px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+            margin: 10px auto;
+            position: relative;
+            overflow: hidden;
+            display: block;
+            z-index: 10;
+        }
+        
+        .show-next-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.6);
+        }
+        
+        .show-next-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .show-next-btn:hover::before {
+            left: 100%;
+        }
+        
+        .interactive-section {
+            margin: 30px 0 20px;
+        }
+        
+        .gift-button {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+            margin: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .gift-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.6);
+        }
+        
+        .gift-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .gift-button:hover::before {
+            left: 100%;
+        }
+        
+        .surprise-box {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            display: none;
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .compliment {
+            font-size: 1.2rem;
+            color: #ffb3d9;
+            font-weight: 400;
+            margin: 15px 0;
+            text-shadow: 0 0 10px rgba(255, 179, 217, 0.3);
+        }
+        
+        .sparkle {
+            display: inline-block;
+            animation: sparkle 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+            50% { transform: scale(1.2) rotate(180deg); opacity: 0.8; }
+        }
+        
+        .birthday-cake {
+            font-size: 3rem;
+            margin: 20px 0;
+            animation: bounce 2s ease-in-out infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+        }
+        
+        .love-meter {
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+        }
+        
+        .meter-bar {
+            width: 100%;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        
+        .meter-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff6b6b, #ff8e8e, #ffa8a8);
+            width: 0%;
+            border-radius: 10px;
+            transition: width 2s ease-in-out;
+        }
+        
+        .footer-message {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-style: italic;
+        }
+        
+        @media (max-width: 768px) {
+            .birthday-card {
+                padding: 30px 20px;
+            }
+            
+            .name-title {
+                font-size: 3rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .message-container {
+                height: 300px;
+            }
+            
+            .gift-button {
+                width: 90%;
+                margin: 10px auto;
+                display: block;
+            }
+            
+            .interactive-section {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .message-container {
+                height: 280px;
+            }
+            
+            .message-content {
+                padding: 15px;
+            }
+            
+            .name-title {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts" id="heartContainer"></div>
+    
+    <div class="container">
+        <div class="birthday-card">
+            <div class="name-title">Maryam</div>
+            <div class="subtitle">✨ Happy Birthday, Marieem! ✨</div>
+            
+            <div class="message">
+                Another year of your blessful existence, and the world gets a little brighter. 
+                <br> Your smile is capable of solving world hunger, African kids starvation, child labour, domestic violence... only if you smile more 😢
+            </div>
+            
+            <div class="flirty-message">
+                <div class="message-container">
+                    <div class="message-content message-arabic" id="arabicMessage">
+                        <p>"Ya Maryemmm, 3id milad sa3id</p>
+                        <p>Ash no9ollik… 3inik el 3asliyin, kol marra nchoofhom n7ess rou7i 9oddem ghoroub chams fi b7ar saafi, manzer yse7er w yhedi fi nafs el wa9t</p>
+                        <p>W cha3rik? Cha3rik el curly el black, nedi3 fih kol marra, ka2annou dayyerli se7er w ana radi, ma n7ebech nfi9 mennou hehe</p>
+                        <p>Wel de7ka mta3ek? Wallahi netsaouarha jrima, khater mosta7il tkoun 9anouniya (not joking)😭</p>
+                        <p>Inchallah nharek ykoun fih far7a kifek, w naas ta7ebbek w ted7ek m3ak, w t3ich la7dhet 7elwa kif elli tkhal9ihom win temchi</p>
+                        <p>Ama deja, enti el jaw wa7dek… el ba9i dekour hahahaha"</p>
+                    </div>
+                    
+                    <div class="message-content message-english" id="englishMessage">
+                        <p>🎉🎊HAPPY BIRTHDAY 🎂🎂 to Mariem💅💋 LITTLE princess😈💖 it's your SLAY-DAY👠👑 and we're here to SERVE✨🧁 up some CAKE🍑 and CHAOS💥👠💃</p>
+                        <p>So grab your heels👠 and your ATTITUDE💁‍♀️ cause tonight's all about YOU💅💖</p>
+                        <p>🎉HAPPY BIRTHDAY💖 you gorgeous QUEEN👑💅 today's all about YOU✨✨</p>
+                        <p>Time to throw on your cutest outfit👗, blast your fave songs🎶, and SLAY the whole day💃💋</p>
+                        <p>Because the world got way better the day you were born 😌💘</p>
+                        <p>So eat that cake🍰, make a wish🌟, and remember—you're not just a year older, you're a year HOTTER🔥</p>
+                        <p>Love you, birthday baddie💖🎊 now go shine like the star you are ✨</p>
+                    </div>
+                </div>
+                <button class="show-next-btn" id="toggleBtn">Show Next Message</button>
+            </div>
+            
+            <div class="birthday-cake">🎂</div>
+            
+            <div class="interactive-section">
+                <button class="gift-button" onclick="showSurprise()">
+                    Click for a Special Message <span class="sparkle">✨</span>
+                </button>
+                
+                <button class="gift-button" onclick="showLoveMeter()">
+                    How Amazing Are You? <span class="sparkle">💖</span>
+                </button>
+            </div>
+            
+            <div class="surprise-box" id="surpriseBox">
+                <div class="compliment">
+                    You know what's incredible about you, Maryam? 
+                    It's not just your beauty (though that's undeniable, from the number of people admiring you)...
+                </div>
+                <div class="compliment">
+                    The way you do things is so admirable—your determination, your hard work. I'm always impressed by you. You might never notice it, but I'm in love with all your qualities.
+                </div>
+                <div class="compliment">
+                    Happy Birthday to someone who makes a difference to everyone they know. Because YOU DO!
+                </div>
+            </div>
+            
+            <div class="love-meter" id="loveMeter" style="display: none;">
+                <div style="color: #ffb3d9; font-weight: 600; margin-bottom: 10px;">
+                    Maryam's Amazingness Level:
+                </div>
+                <div class="meter-bar">
+                    <div class="meter-fill" id="meterFill"></div>
+                </div>
+                <div style="color: #ff6b6b; font-weight: 600; margin-top: 10px;" id="meterText">
+                    Loading...
+                </div>
+            </div>
+            
+            <div class="footer-message">
+                Made with 💕 and a lot of admiration for the birthday girl
+                <br>Hope your special day is as pretty/hot/cute/handsome (you're all of those) as you are! 🎉
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create floating hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '💕';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDelay = Math.random() * 6 + 's';
+            heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            
+            document.getElementById('heartContainer').appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 8000);
+        }
+        
+        // Create hearts periodically
+        setInterval(createHeart, 1000);
+        
+        // Show surprise message
+        function showSurprise() {
+            const surpriseBox = document.getElementById('surpriseBox');
+            if (surpriseBox.style.display === 'none' || !surpriseBox.style.display) {
+                surpriseBox.style.display = 'block';
+                
+                // Add extra hearts when surprise is shown
+                for (let i = 0; i < 10; i++) {
+                    setTimeout(createHeart, i * 100);
+                }
+            } else {
+                surpriseBox.style.display = 'none';
+            }
+        }
+        
+        // Show love meter
+        function showLoveMeter() {
+            const loveMeter = document.getElementById('loveMeter');
+            const meterFill = document.getElementById('meterFill');
+            const meterText = document.getElementById('meterText');
+            
+            if (loveMeter.style.display === 'none' || !loveMeter.style.display) {
+                loveMeter.style.display = 'block';
+                
+                setTimeout(() => {
+                    meterFill.style.width = '100%';
+                    setTimeout(() => {
+                        meterText.innerHTML = '∞% Perfect! 💖✨<br><small>The meter broke because you\'re off the charts!</small>';
+                    }, 1000);
+                }, 500);
+                
+                // Create explosion of hearts
+                for (let i = 0; i < 15; i++) {
+                    setTimeout(createHeart, i * 50);
+                }
+            } else {
+                loveMeter.style.display = 'none';
+                meterFill.style.width = '0%';
+                meterText.innerHTML = 'Loading...';
+            }
+        }
+        
+        // Toggle between messages
+        const toggleBtn = document.getElementById('toggleBtn');
+        const arabicMessage = document.getElementById('arabicMessage');
+        const englishMessage = document.getElementById('englishMessage');
+        let isEnglishActive = false;
+        
+        toggleBtn.addEventListener('click', () => {
+            isEnglishActive = !isEnglishActive;
+            
+            if (isEnglishActive) {
+                arabicMessage.classList.add('hidden');
+                englishMessage.classList.add('active');
+                toggleBtn.textContent = 'Show Previous Message';
+                // Scroll to top of English message
+                englishMessage.scrollTop = 0;
+            } else {
+                arabicMessage.classList.remove('hidden');
+                englishMessage.classList.remove('active');
+                toggleBtn.textContent = 'Show Next Message';
+                // Scroll to top of Arabic message
+                arabicMessage.scrollTop = 0;
+            }
+        });
+        
+        // Add some interactive sparkles on mouse move
+        document.addEventListener('mousemove', function(e) {
+            if (Math.random() > 0.95) {
+                const sparkle = document.createElement('div');
+                sparkle.innerHTML = '✨';
+                sparkle.style.position = 'fixed';
+                sparkle.style.left = e.clientX + 'px';
+                sparkle.style.top = e.clientY + 'px';
+                sparkle.style.pointerEvents = 'none';
+                sparkle.style.fontSize = '12px';
+                sparkle.style.color = '#ffb3d9';
+                sparkle.style.animation = 'fadeOut 1s ease-out forwards';
+                sparkle.style.zIndex = '1000';
+                
+                document.body.appendChild(sparkle);
+                
+                setTimeout(() => sparkle.remove(), 1000);
+            }
+        });
+        
+        // Add fadeOut animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeOut {
+                0% { opacity: 1; transform: scale(1); }
+                100% { opacity: 0; transform: scale(1.5) translateY(-20px); }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Initial hearts
+        for (let i = 0; i < 5; i++) {
+            setTimeout(createHeart, i * 500);
+        }
+        
+        // Ensure messages are scrollable to top
+        arabicMessage.scrollTop = 0;
+        englishMessage.scrollTop = 0;
+    </script>
+</body>
+</html>
